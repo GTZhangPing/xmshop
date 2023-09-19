@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)"
+options: "cbbb1471380020fc92116bed033ee375259d54802afb9601c00e18c5732bfe33"
+build_start_time: [1694483113, 959217000]
+build_end_time: [1694483114, 60531000]
+inputs:
+  "/Users/zhangping/Desktop/flutter_study/xmshop/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1694483057, 553950486]
+  "/Users/zhangping/Desktop/flutter_study/xmshop/macos/Runner/AppDelegate.swift": !private [1689202922, 0]
+  "/Users/zhangping/Desktop/flutter_study/xmshop/macos/Runner/MainFlutterWindow.swift": !private [1689202922, 0]
