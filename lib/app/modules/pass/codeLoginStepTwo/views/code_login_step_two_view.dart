@@ -65,7 +65,7 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
                 print(v);
                 MessageModel result = await controller.doLogin();
                 if (result.success) {
-                  Get.offAllNamed(Routes.TABS);
+                  Get.offAllNamed(Routes.TABS, arguments: {'index': 4});
                 } else {
                   Get.snackbar("提示信息", result.message);
                 }

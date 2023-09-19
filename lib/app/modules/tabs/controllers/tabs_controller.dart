@@ -18,7 +18,17 @@ class TabsController extends GetxController {
     const UserView(),
   ];
 
-  PageController pageController = PageController(initialPage: 0);
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    if (Get.arguments != null) {
+      currentIndex.value = Get.arguments['index'];
+    }
+  }
+
+  PageController pageController = PageController(
+      initialPage: Get.arguments != null ? Get.arguments['index'] : 0);
 
   final count = 0.obs;
 }

@@ -44,7 +44,9 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController> {
               } else {
                 MessageModel result = await controller.sendCode();
                 if (result.success) {
-                  Get.toNamed(Routes.CODE_LOGIN_STEP_TWO,arguments: {'tel': controller.textEditingController.text});
+                  Get.toNamed(Routes.CODE_LOGIN_STEP_TWO, arguments: {
+                    'tel': controller.textEditingController.text
+                  });
                 } else {
                   Get.snackbar("提示信息!", result.message);
                 }

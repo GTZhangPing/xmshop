@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/models/message.dart';
 import 'package:xmshop/app/routes/app_pages.dart';
 import 'package:xmshop/app/services/screenAdapter.dart';
-import 'package:xmshop/app/widget/PassTextFiled.dart';
 import 'package:xmshop/app/widget/logo.dart';
 import 'package:xmshop/app/widget/passButton.dart';
 
+import '../../../../widget/passTextFiled.dart';
 import '../controllers/register_step_three_controller.dart';
 
 class RegisterStepThreeView extends GetView<RegisterStepThreeController> {
@@ -30,11 +30,15 @@ class RegisterStepThreeView extends GetView<RegisterStepThreeController> {
           PassTextFiled(
             hintText: "请输入密码",
             textEditingController: controller.passworldController,
+            keyboardType: TextInputType.emailAddress,
+            isPassword: true,
           ),
           SizedBox(height: ScreenAdapter.height(20)),
           PassTextFiled(
             hintText: "输入确认密码",
             textEditingController: controller.passworld2Controller,
+            keyboardType: TextInputType.emailAddress,
+            isPassword: true,
           ),
           SizedBox(height: ScreenAdapter.height(20)),
           PassButton(
@@ -49,7 +53,7 @@ class RegisterStepThreeView extends GetView<RegisterStepThreeController> {
                 MessageModel result = await controller.doRegister();
                 if (result.success) {
                   Get.snackbar('提示', '注册成功');
-                  Get.offAllNamed(Routes.TABS);
+                  Get.offAllNamed(Routes.TABS, arguments: {'index': 4});
                 } else {
                   Get.snackbar('提示', result.message);
                 }

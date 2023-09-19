@@ -8,13 +8,12 @@ import '../../../../services/httpsClient.dart';
 class RegisterStepOneController extends GetxController {
   //TODO: Implement RegisterStepOneController
 
-TextEditingController phoneController = TextEditingController();
- HttpsClient httpsClient = HttpsClient();
+  TextEditingController phoneController = TextEditingController();
+  HttpsClient httpsClient = HttpsClient();
 
   sendCode() async {
-    var response = await httpsClient.post("api/sendCode",data:{
-        "tel":phoneController.text
-      });
+    var response = await httpsClient
+        .post("api/sendCode", data: {"tel": phoneController.text});
     print(response);
     if (response != null) {
       if (response.data['success']) {
@@ -28,5 +27,4 @@ TextEditingController phoneController = TextEditingController();
       return MessageModel(message: "网络异常", success: false);
     }
   }
-
 }

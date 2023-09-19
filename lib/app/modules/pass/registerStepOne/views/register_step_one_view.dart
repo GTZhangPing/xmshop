@@ -29,6 +29,7 @@ class RegisterStepOneView extends GetView<RegisterStepOneController> {
           PassTextFiled(
             hintText: '请输入手机号',
             textEditingController: controller.phoneController,
+            keyboardType: TextInputType.number,
           ),
           SizedBox(height: ScreenAdapter.height(40)),
           PassButton(
@@ -40,7 +41,8 @@ class RegisterStepOneView extends GetView<RegisterStepOneController> {
               } else {
                 MessageModel result = await controller.sendCode();
                 if (result.success) {
-                  Get.toNamed(Routes.REGISTER_STEP_TWO, arguments: {'tel': controller.phoneController.text});
+                  Get.toNamed(Routes.REGISTER_STEP_TWO,
+                      arguments: {'tel': controller.phoneController.text});
                 } else {
                   Get.snackbar('提示', result.message);
                 }

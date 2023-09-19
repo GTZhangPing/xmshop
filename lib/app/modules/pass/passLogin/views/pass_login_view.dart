@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/models/message.dart';
 import 'package:xmshop/app/routes/app_pages.dart';
 import 'package:xmshop/app/services/screenAdapter.dart';
-import 'package:xmshop/app/widget/PassTextFiled.dart';
 import 'package:xmshop/app/widget/logo.dart';
 import 'package:xmshop/app/widget/passButton.dart';
 
+import '../../../../widget/passTextFiled.dart';
 import '../../../../widget/userAreement.dart';
 import '../controllers/pass_login_controller.dart';
 
@@ -35,6 +35,8 @@ class PassLoginView extends GetView<PassLoginController> {
           PassTextFiled(
             hintText: '请输入密码',
             textEditingController: controller.passworldController,
+            keyboardType: TextInputType.emailAddress,
+            isPassword: true,
           ),
           const UserAreement(),
           PassButton(
@@ -48,7 +50,7 @@ class PassLoginView extends GetView<PassLoginController> {
               } else {
                 MessageModel result = await controller.doLogin();
                 if (result.success) {
-                  Get.offAllNamed(Routes.TABS);
+                  Get.offAllNamed(Routes.TABS, arguments: {'index': 4});
                 } else {
                   Get.snackbar('提示', result.message);
                 }
