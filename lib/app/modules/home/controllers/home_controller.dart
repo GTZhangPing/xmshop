@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:xmshop/app/models/focus_model.dart';
 import 'package:xmshop/app/models/plist_model.dart';
 import 'package:xmshop/app/services/httpsClient.dart';
+import 'package:xmshop/app/services/signServices.dart';
 import '../../../models/category_model.dart';
 
 class HomeController extends GetxController {
@@ -60,8 +61,7 @@ class HomeController extends GetxController {
   }
 
   getSellingSwiperData() async {
-    var response =
-        await httpsClient.get('api/focus?position=2');
+    var response = await httpsClient.get('api/focus?position=2');
     print(response.data);
 
     var focus = FocusModel.fromJson(response.data);
@@ -70,16 +70,14 @@ class HomeController extends GetxController {
   }
 
   getSellingPlistData() async {
-    var response =
-        await httpsClient.get('api/plist?is_hot=1');
+    var response = await httpsClient.get('api/plist?is_hot=1');
     var plist = PlistModel.fromJson(response.data);
     sellingPlist.value = plist.result!;
     update();
   }
 
   getBestPlistData() async {
-    var response =
-        await httpsClient.get('api/plist?is_best=1');
+    var response = await httpsClient.get('api/plist?is_best=1');
     var plist = PlistModel.fromJson(response.data);
     bestPlist.value = plist.result!;
     update();

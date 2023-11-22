@@ -1,6 +1,16 @@
 import 'package:get/get.dart';
 
+import '../modules/address/addressAdd/bindings/address_add_binding.dart';
+import '../modules/address/addressAdd/views/address_add_view.dart';
+import '../modules/address/addressList/bindings/address_list_binding.dart';
+import '../modules/address/addressList/views/address_list_view.dart';
 import '../modules/cart/views/cart_view.dart';
+import '../modules/chectout/bindings/chectout_binding.dart';
+import '../modules/chectout/views/chectout_view.dart';
+import '../modules/orderDetail/bindings/order_detail_binding.dart';
+import '../modules/orderDetail/views/order_detail_view.dart';
+import '../modules/orderList/bindings/order_list_binding.dart';
+import '../modules/orderList/views/order_list_view.dart';
 import '../modules/pass/codeLoginStepOne/bindings/code_login_step_one_binding.dart';
 import '../modules/pass/codeLoginStepOne/views/code_login_step_one_view.dart';
 import '../modules/pass/codeLoginStepTwo/bindings/code_login_step_two_binding.dart';
@@ -15,6 +25,8 @@ import '../modules/pass/registerStepThree/bindings/register_step_three_binding.d
 import '../modules/pass/registerStepThree/views/register_step_three_view.dart';
 import '../modules/pass/registerStepTwo/bindings/register_step_two_binding.dart';
 import '../modules/pass/registerStepTwo/views/register_step_two_view.dart';
+import '../modules/pay/bindings/pay_binding.dart';
+import '../modules/pay/views/pay_view.dart';
 import '../modules/productContent/bindings/product_content_binding.dart';
 import '../modules/productContent/views/product_content_view.dart';
 import '../modules/productList/bindings/product_list_binding.dart';
@@ -96,6 +108,43 @@ class AppPages {
       name: _Paths.REGISTER_STEP_TWO,
       page: () => const RegisterStepTwoView(),
       binding: RegisterStepTwoBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHECTOUT,
+      page: () => const ChectoutView(),
+      binding: ChectoutBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADDRESS_ADD,
+      page: () => const AddressAddView(),
+      binding: AddressAddBinding(),
+      children: [
+        GetPage(
+          name: _Paths.ADDRESS_ADD,
+          page: () => const AddressAddView(),
+          binding: AddressAddBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: _Paths.ADDRESS_LIST,
+      page: () => const AddressListView(),
+      binding: AddressListBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAY,
+      page: () => const PayView(),
+      binding: PayBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDER_LIST,
+      page: () => const OrderListView(),
+      binding: OrderListBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDER_DETAIL,
+      page: () => const OrderDetailView(),
+      binding: OrderDetailBinding(),
     ),
   ];
 }

@@ -4,23 +4,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Storage {
   /// 保存数据
- static setData(String key, dynamic value) async {
+  static setData(String key, dynamic value) async {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString(key, json.encode(value));
   }
 
   ///获取数据
   static getData(String key) async {
-     try {
+    try {
       var prefs = await SharedPreferences.getInstance();
       String? tempData = prefs.getString(key);
       if (tempData != null) {
         return json.decode(tempData);
       } else {
-        return null;
+        return List.empty();
       }
     } catch (e) {
-      return null;
+      return List.empty();
     }
   }
 

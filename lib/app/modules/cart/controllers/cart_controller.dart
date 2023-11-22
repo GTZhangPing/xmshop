@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:xmshop/app/routes/app_pages.dart';
 import 'package:xmshop/app/services/cartServices.dart';
+import 'package:xmshop/app/services/storage.dart';
+import 'package:xmshop/app/services/userServices.dart';
 
 class CartController extends GetxController {
   //TODO: Implement CartController
@@ -7,6 +10,8 @@ class CartController extends GetxController {
   RxList cartList = [].obs;
   RxBool checkedAll = false.obs;
   RxInt totalPrice = 0.obs;
+  RxBool isEditor = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -15,7 +20,7 @@ class CartController extends GetxController {
 
   void getCartListData() async {
     cartList.value = await CartServices.getCartData();
-    checkedAll.value=isCheckedAll();    
+    checkedAll.value = isCheckedAll();
     calculatePrice();
     update();
   }
@@ -31,6 +36,7 @@ class CartController extends GetxController {
       tempList.add(element);
     }
     CartServices.setCartData(tempList);
+    calculatePrice();
     update();
   }
 
@@ -96,10 +102,49 @@ class CartController extends GetxController {
     int price = 0;
     for (var element in cartList) {
       if (element['checked'] == true) {
-        price += (element['price'] as int)*(element['count'] as int);
+        price += (element['price'] as int) * (element['count'] as int);
       }
     }
     totalPrice.value = price;
     update();
+  }
+
+  checkout() async {
+    bool loginState = await UserServices.getUserLoginState();
+
+    List tempList = [];
+    for (var element in cartList) {
+      if (element['checked'] == true) {
+        tempList.add(element);
+      }
+    }
+    if (loginState) {
+      if (tempList.isNotEmpty) {
+        Storage.setData('checkoutList', tempList);
+        Get.toNamed(Routes.CHECTOUT);
+      } else {
+        Get.snackbar('提示', '购物车中没有要结算的商品');
+      }
+    } else {
+      Get.snackbar('提示', '您还有没有登录，请先登录');
+      Get.toNamed(Routes.CODE_LOGIN_STEP_ONE);
+    }
+  }
+
+  changeEditorState() {
+    isEditor.value = !isEditor.value;
+    update();
+  }
+
+  deleteCarData() {
+    List tempList = [];
+    for (var element in cartList) {
+      if (element['checked'] == false) {
+        tempList.add(element);
+      }
+    }
+    cartList.value = tempList;
+    update();
+    CartServices.setCartData(tempList);
   }
 }

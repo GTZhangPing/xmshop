@@ -44,7 +44,7 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController> {
               } else {
                 MessageModel result = await controller.sendCode();
                 if (result.success) {
-                  Get.toNamed(Routes.CODE_LOGIN_STEP_TWO, arguments: {
+                  Get.offAndToNamed(Routes.CODE_LOGIN_STEP_TWO, arguments: {
                     'tel': controller.textEditingController.text
                   });
                 } else {
@@ -65,7 +65,7 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController> {
                     child: const Text('新用户注册')),
                 TextButton(
                     onPressed: () {
-                      Get.toNamed(Routes.PASS_LOGIN);
+                      Get.offAndToNamed(Routes.PASS_LOGIN);
                     },
                     child: const Text('账号密码登录')),
               ],

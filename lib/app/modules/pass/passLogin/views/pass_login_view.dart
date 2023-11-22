@@ -50,7 +50,7 @@ class PassLoginView extends GetView<PassLoginController> {
               } else {
                 MessageModel result = await controller.doLogin();
                 if (result.success) {
-                  Get.offAllNamed(Routes.TABS, arguments: {'index': 4});
+                  Get.back();
                 } else {
                   Get.snackbar('提示', result.message);
                 }

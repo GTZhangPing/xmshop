@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/models/pcontent_model.dart';
+import 'package:xmshop/app/routes/app_pages.dart';
 import 'package:xmshop/app/services/cartServices.dart';
 import 'package:xmshop/app/services/httpsClient.dart';
 import 'package:xmshop/app/services/screenAdapter.dart';
+import 'package:xmshop/app/services/storage.dart';
+import 'package:xmshop/app/services/userServices.dart';
 
 class ProductContentController extends GetxController {
   //TODO: Implement ProductContentController
@@ -168,10 +171,9 @@ class ProductContentController extends GetxController {
     update();
   }
 
-
-setSelectedAttr(){
-  List tempList = [];
-  for (var i = 0; i < pcontentAttr.length; i++) {
+  setSelectedAttr() {
+    List tempList = [];
+    for (var i = 0; i < pcontentAttr.length; i++) {
       for (var j = 0; j < pcontentAttr[i].checkList.length; j++) {
         if (pcontentAttr[i].checkList[j] == true) {
           tempList.add(pcontentAttr[i].list[j]);
@@ -181,7 +183,7 @@ setSelectedAttr(){
     // tempList.add('${buyNum.value}件');
     selectedAttr.value = tempList.join(",");
     update();
-}
+  }
 
   //增加数量
   incBuyNum() {
@@ -197,7 +199,7 @@ setSelectedAttr(){
     }
   }
 
-   void addCart() {
+  void addCart() {
     setSelectedAttr();
     print("加入购物车");
     Get.back();
@@ -205,10 +207,28 @@ setSelectedAttr(){
     Get.snackbar('提示', '加入购物车成功');
   }
 
-  void buy() {
+  void buy() async {
     setSelectedAttr();
-    print("立即购买");
+    // print("立即购买");
     Get.back();
 
+    List tempLit = [];
+    tempLit.add({
+      "_id": pcontent.value.sId,
+      "title": pcontent.value.title,
+      "price": pcontent.value.price,
+      "selectedAttr": selectedAttr.value,
+      "count": buyNum.value,
+      "pic": pcontent.value.pic,
+      "checked": true
+    });
+    Storage.setData('checkoutList', tempLit);
+    bool loginState = await UserServices.getUserLoginState();
+    if (loginState) {
+      Get.toNamed(Routes.CHECTOUT);
+    } else {
+      Get.toNamed(Routes.CODE_LOGIN_STEP_ONE);
+      Get.snackbar('提示', '您还未登陆');
+    }
   }
 }

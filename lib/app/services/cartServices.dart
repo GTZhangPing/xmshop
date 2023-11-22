@@ -7,7 +7,7 @@ class CartServices {
   static addCart(
       PcontentItemModel pcontent, String selectedAttr, int buyNum) async {
     List? cartListData = await Storage.getData("cartList");
-    if (cartListData != null) {
+    if (cartListData!.isNotEmpty) {
       var hasData = cartListData.any((value) {
         return value['_id'] == pcontent.sId &&
             value['selectedAttr'] == selectedAttr;
@@ -76,5 +76,27 @@ class CartServices {
   //清空搜索记录
   static clearCartData() async {
     await Storage.deleteData('cartList');
+  }
+
+  static deleteChectoutList(checkoutList) async {
+    List? cartListData = await Storage.getData("cartList");
+    if (cartListData != null) {
+      List tempList = [];
+      for (Map element in cartListData) {
+        if (!hasCheckOutData(checkoutList, element)) {
+          tempList.add(element);
+        }
+      }
+      Storage.setData('cartList', tempList);
+    }
+  }
+
+  static hasCheckOutData(checkOutList, cartItem) {
+    for (var element in checkOutList) {
+      if (element['_id'] == cartItem['_id']) {
+        return true;
+      }
+    }
+    return false;
   }
 }

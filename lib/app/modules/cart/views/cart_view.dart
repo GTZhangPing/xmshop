@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:xmshop/app/routes/app_pages.dart';
 import 'package:xmshop/app/services/cartServices.dart';
 import 'package:xmshop/app/services/screenAdapter.dart';
 
@@ -22,9 +23,11 @@ class CartView extends GetView {
         actions: [
           TextButton(
               onPressed: () {
-                CartServices.clearCartData();
+                controller.changeEditorState();
               },
-              child: const Text('编辑'))
+              child: Obx(() => controller.isEditor.value
+                  ? const Text('完成')
+                  : const Text('编辑')))
         ],
       ),
       body: GetBuilder<CartController>(
@@ -63,7 +66,7 @@ class CartView extends GetView {
                               Row(
                                 children: [
                                   Checkbox(
-                                    activeColor: Colors.red,
+                                      activeColor: Colors.red,
                                       value: controller.checkedAll.value,
                                       onChanged: (value) {
                                         controller.checkedAllFunc(value);
@@ -71,31 +74,59 @@ class CartView extends GetView {
                                   const Text('全选'),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  const Text("合计: "),
-                                  Text('${controller.totalPrice.value}',
-                                      style: TextStyle(
-                                          fontSize: ScreenAdapter.fontSize(58),
-                                          color: Colors.red)),
-                                  SizedBox(width: ScreenAdapter.width(20)),
-                                  ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.red),
-                                        foregroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20))),
-                                      ),
-                                      onPressed: () {},
-                                      child: const Text('结算')),
-                                ],
-                              )
+                              Obx(() => controller.isEditor.value
+                                  ? Row(
+                                      children: [
+                                        ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      Colors.red),
+                                              foregroundColor:
+                                                  MaterialStateProperty.all(
+                                                      Colors.white),
+                                              shape: MaterialStateProperty.all(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20))),
+                                            ),
+                                            onPressed: () {
+                                              controller.deleteCarData();
+                                            },
+                                            child: const Text('删除')),
+                                      ],
+                                    )
+                                  : Row(
+                                      children: [
+                                        const Text("合计: "),
+                                        Text('${controller.totalPrice.value}',
+                                            style: TextStyle(
+                                                fontSize:
+                                                    ScreenAdapter.fontSize(58),
+                                                color: Colors.red)),
+                                        SizedBox(
+                                            width: ScreenAdapter.width(20)),
+                                        ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      Colors.red),
+                                              foregroundColor:
+                                                  MaterialStateProperty.all(
+                                                      Colors.white),
+                                              shape: MaterialStateProperty.all(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20))),
+                                            ),
+                                            onPressed: () {
+                                              controller.checkout();
+                                            },
+                                            child: const Text('结算')),
+                                      ],
+                                    ))
                             ],
                           ),
                         )),

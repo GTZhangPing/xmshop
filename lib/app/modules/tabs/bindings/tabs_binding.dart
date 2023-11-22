@@ -12,10 +12,10 @@ class TabsBinding extends Bindings {
     Get.lazyPut<TabsController>(
       () => TabsController(),
     );
-     Get.lazyPut<HomeController>(
+    Get.lazyPut<HomeController>(
       () => HomeController(),
     );
-     Get.lazyPut<CategoryController>(
+    Get.lazyPut<CategoryController>(
       () => CategoryController(),
     );
     Get.lazyPut<GiveController>(

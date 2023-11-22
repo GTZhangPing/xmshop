@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/models/message.dart';
+import 'package:xmshop/app/modules/user/controllers/user_controller.dart';
 import 'package:xmshop/app/services/httpsClient.dart';
 
 import '../../../../services/storage.dart';
@@ -8,8 +9,14 @@ import '../../../../services/storage.dart';
 class PassLoginController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passworldController = TextEditingController();
-
+  UserController userController = Get.find();
   HttpsClient httpsClient = HttpsClient();
+
+  @override
+  void onClose() {
+    super.onClose();
+    userController.getUserInfo();
+  }
 
   doLogin() async {
     var response = await httpsClient.post("api/doLogin", data: {

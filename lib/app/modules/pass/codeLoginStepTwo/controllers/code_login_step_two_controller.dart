@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:xmshop/app/modules/user/controllers/user_controller.dart';
 import 'package:xmshop/app/services/storage.dart';
-
 import '../../../../models/message.dart';
 import '../../../../services/httpsClient.dart';
 
@@ -13,11 +13,18 @@ class CodeLoginStepTwoController extends GetxController {
   String tel = Get.arguments["tel"];
   HttpsClient httpsClient = HttpsClient();
   RxInt count = 10.obs;
+  UserController userController = Get.find();
 
   @override
   void onInit() {
     super.onInit();
     countDown();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    userController.getUserInfo();
   }
 
   countDown() {

@@ -10,6 +10,10 @@ characters
 2.12
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/characters-1.3.0/
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/characters-1.3.0/lib/
+city_pickers
+2.12
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/city_pickers-1.3.0/
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/city_pickers-1.3.0/lib/
 clock
 2.12
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/clock-1.1.1/
@@ -18,6 +22,10 @@ collection
 2.18
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/collection-1.17.2/
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/collection-1.17.2/lib/
+crypto
+2.19
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/crypto-3.0.3/
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/crypto-3.0.3/lib/
 csslib
 2.19
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/csslib-0.17.3/
@@ -82,6 +90,10 @@ list_counter
 2.18
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/list_counter-1.0.2/
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/list_counter-1.0.2/lib/
+lpinyin
+2.12
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/lpinyin-2.0.3/
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/lpinyin-2.0.3/lib/
 matcher
 2.18
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/matcher-0.12.16/
@@ -122,6 +134,10 @@ plugin_platform_interface
 2.19
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/plugin_platform_interface-2.1.6/
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/plugin_platform_interface-2.1.6/lib/
+scrollable_positioned_list
+2.15
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/scrollable_positioned_list-0.3.8/
+file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/scrollable_positioned_list-0.3.8/lib/
 shared_preferences
 2.19
 file:///Users/jump/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences-2.2.1/

@@ -269,9 +269,9 @@ class UserView extends GetView<UserController> {
                         top: ScreenAdapter.height(60),
                         bottom: ScreenAdapter.height(40)),
                     height: ScreenAdapter.height(270),
-                    child: const Row(
+                    child: Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           flex: 1,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -283,7 +283,7 @@ class UserView extends GetView<UserController> {
                             ],
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           flex: 1,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -294,7 +294,7 @@ class UserView extends GetView<UserController> {
                             ],
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           flex: 1,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -308,7 +308,7 @@ class UserView extends GetView<UserController> {
                             ],
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           flex: 1,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -322,14 +322,19 @@ class UserView extends GetView<UserController> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Icon(Icons.copy_all_rounded,
-                                  color: Colors.black87),
-                              Text("全部订单",
-                                  style: TextStyle(color: Colors.black87))
-                            ],
+                          child: InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.ORDER_LIST);
+                            },
+                            child: const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Icon(Icons.copy_all_rounded,
+                                    color: Colors.black87),
+                                Text("全部订单",
+                                    style: TextStyle(color: Colors.black87))
+                              ],
+                            ),
                           ),
                         ),
                       ],
